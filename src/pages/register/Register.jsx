@@ -1,18 +1,11 @@
 import './register.css';
 import React, {useState} from "react";
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {addDoc, collection, getFirestore} from "firebase/firestore";
 import {db} from "../../fs/firebaseConfig";
 import {
   Box,
   Button,
-  FormControl,
-  FormLabel,
-  Icon,
-  InputAdornment,
-  InputLabel, MenuItem,
-  Radio,
-  RadioGroup,
   TextField
 } from "@mui/material";
 
@@ -26,6 +19,8 @@ function addUser(user, email, pword) {
 }
 
 const Register = () => {
+  const navigate = useNavigate();
+  
   const [user, setUser] = useState('');
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
@@ -75,9 +70,11 @@ const Register = () => {
                 onClick={() => {
                   if(user !== "" && email !== "" && pass !== "") {
                     addUser(user, email, pass);
+                    window.sessionStorage.setItem("user", email);
+                    navigate('/');
                   }
                   else{
-                    alert("One or more Empty Entries")
+                    alert("One or More Empty Entries")
                   }
               }}>
                 Add New

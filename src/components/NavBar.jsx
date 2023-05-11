@@ -1,7 +1,7 @@
 import './navBar.css'
 import Logo from '../images/Logo.png'   
 import {Link, NavLink} from 'react-router-dom'
-import {links} from '../data'
+import {manyLinks} from '../manyLinks'
 import {GiHamburgerMenu} from 'react-icons/gi'
 
 const NavBar = () => {
@@ -13,9 +13,8 @@ const NavBar = () => {
             </Link>
             <ul className='nav__links'>
                 {
-                    links.map(({name, path}, index) => {
+                    manyLinks.map(({name, path}, index) => {
                         return (
-                            name === 'Register' ? <li></li> :
                             <li>
                                 <NavLink to={path} className={({isActive}) => isActive ? 'active-nav' : ''}>{name}</NavLink>
                             </li>
